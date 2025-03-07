@@ -5,7 +5,7 @@ import pandas as pd
 from send_email import send_email
 st.header('Contact Me')
 
-df = pd.read_csv(filepath_or_buffer= 'topics.csv', sep=';')
+df = pd.read_csv(filepath_or_buffer= 'topics.csv')
 with st.form(key='email_forms'):
     user_email = st.text_input('your email address')
     subject = st.selectbox(label='select a topic', options=df, placeholder="Choose an option")

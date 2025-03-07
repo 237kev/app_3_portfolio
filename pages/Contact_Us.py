@@ -1,11 +1,22 @@
 import streamlit as st
+from click import option
+import pandas as pd
 
+from send_email import send_email
 st.header('Contact Me')
 
+df = pd.read_csv(filepath_or_buffer= 'topics.csv', sep=';')
 with st.form(key='email_forms'):
     user_email = st.text_input('your email address')
-    message = st.text_area('your message')
+    subject = st.selectbox(label='select a topic', options=df, placeholder="Choose an option")
+    raw_message = st.text_area('your message')
+    message = f"""\
+Subject: New email from {user_email}
+
+Topic: {subject}
+send From: {user_email}
+{raw_message}"""
     button = st.form_submit_button()
     if button:
-        message = message +user_email
-        print('button was pressed!')
+        send_email(message)
+        st.info('your email was send succesfully')

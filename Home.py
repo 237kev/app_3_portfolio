@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas
 
+
 st.set_page_config(layout= 'wide')
 col1, empty_col, col2 = st.columns([1.5, 0.5, 1.5])  # Adjust column width ratio.
 
